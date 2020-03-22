@@ -6,13 +6,12 @@
         <v-text-field label="CEP" v-mask="'#####-###'" outlined v-model="postalCode"></v-text-field>
         <div class="d-flex flex-column align-center">
           <v-btn
-            :loading="loading3"
-            :disabled="loading3"
+            :loading="requesting"
+            :disabled="requesting"
             class="ma-2 white--text"
             color="#4267b2"
             width="220"
             height="40"
-            @click="loader = 'loading3'"
           >Carregar</v-btn>
         </div>
         <v-simple-table>
@@ -54,7 +53,8 @@ import { mask } from "vue-the-mask";
 export default {
   directives: { mask },
   data: () => ({
-    postalCode: ""
+    postalCode: "",
+    requesting: false
   }),
   computed: {
     cases: () => [

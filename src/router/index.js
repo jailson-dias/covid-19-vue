@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import store from "../store";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
     component: Home,
     children: [
       {
@@ -17,16 +17,28 @@ const routes = [
           import(/* webpackChunkName: "about" */ "../views/CheckStatus.vue")
       },
       {
-        path: "/test-covid-19",
-        name: "Test Covid 19",
+        path: "/report",
+        name: "Report",
         component: () =>
-          import(/* webpackChunkName: "about" */ "../views/TestCovid19.vue")
+          import(/* webpackChunkName: "about" */ "../views/Report.vue"),
+        meta: {
+          requiresAuth: true
+        }
       },
+      // {
+      //   path: "/test-covid-19",
+      //   name: "Test Covid 19",
+      //   component: () =>
+      //     import(/* webpackChunkName: "about" */ "../views/TestCovid19.vue")
+      // },
       {
         path: "/profile",
         name: "Perfil",
         component: () =>
-          import(/* webpackChunkName: "about" */ "../views/Profile.vue")
+          import(/* webpackChunkName: "about" */ "../views/Profile.vue"),
+        meta: {
+          requiresAuth: true
+        }
       }
     ]
   },
@@ -49,29 +61,18 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (localStorage.getItem("jwt") == null) {
+    if (store.state.token == null) {
       next({
         path: "/login",
-        params: { nextUrl: to.fullPath }
+        query: { path: to.fullPath }
       });
     } else {
-      let user = JSON.parse(localStorage.getItem("user"));
-      if (to.matched.some(record => record.meta.is_admin)) {
-        if (user.is_admin == 1) {
-          next();
-        } else {
-          next({ name: "userboard" });
-        }
-      } else {
-        next();
-      }
-    }
-  } else if (to.matched.some(record => record.meta.guest)) {
-    if (localStorage.getItem("jwt") == null) {
       next();
-    } else {
-      next({ name: "userboard" });
     }
+  } else if (store.state.token != null && to.fullPath == "/login") {
+    next({
+      path: "/"
+    });
   } else {
     next();
   }
