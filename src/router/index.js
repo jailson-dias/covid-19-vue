@@ -8,16 +8,36 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: "/",
+        name: "Report",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/Report.vue")
+      },
+      {
+        path: "/test-covid-19",
+        name: "Test Covid 19",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/TestCovid19.vue")
+      },
+      {
+        path: "/profile",
+        name: "Perfil",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/Profile.vue")
+      }
+    ]
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/login",
+    name: "Login",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "about" */ "../views/SignIn.vue"),
+    meta: {
+      guest: true
+    }
   }
 ];
 
@@ -25,6 +45,36 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (localStorage.getItem("jwt") == null) {
+      next({
+        path: "/login",
+        params: { nextUrl: to.fullPath }
+      });
+    } else {
+      let user = JSON.parse(localStorage.getItem("user"));
+      if (to.matched.some(record => record.meta.is_admin)) {
+        if (user.is_admin == 1) {
+          next();
+        } else {
+          next({ name: "userboard" });
+        }
+      } else {
+        next();
+      }
+    }
+  } else if (to.matched.some(record => record.meta.guest)) {
+    if (localStorage.getItem("jwt") == null) {
+      next();
+    } else {
+      next({ name: "userboard" });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
