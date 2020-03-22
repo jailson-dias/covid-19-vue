@@ -2,9 +2,6 @@
   <v-container>
     <div class="d-flex flex-column align-center pt-8">
       <v-img class="mt-8 mb-12" :src="logo" width="250" height="250"></v-img>
-      <!-- <v-row class="text-center">
-        <v-btn @click="google">Google</v-btn>
-      </v-row>-->
       <v-btn
         :loading="loading3"
         :disabled="loading3"

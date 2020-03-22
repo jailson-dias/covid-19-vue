@@ -12,9 +12,9 @@ const routes = [
     children: [
       {
         path: "/",
-        name: "Report",
+        name: "CheckStatus",
         component: () =>
-          import(/* webpackChunkName: "about" */ "../views/Report.vue")
+          import(/* webpackChunkName: "about" */ "../views/CheckStatus.vue")
       },
       {
         path: "/test-covid-19",

@@ -24,7 +24,7 @@ var firebaseConfig = {
 
 // Vue.use(VueGoogleMaps, {
 //   load: {
-//     key: "AIzaSyDlmnsfdsaFE5H_gchr4g8OEWgTURqhobw",
+//     key: "API_KEY",
 //     libraries: "visualization"
 // libraries: 'places', // This is required if you use the Autocomplete plugin
 // OR: libraries: 'places,drawing'
