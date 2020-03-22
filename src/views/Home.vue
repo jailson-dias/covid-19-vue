@@ -8,10 +8,15 @@
         </transition>
       </v-container>
     </v-content>
-    <v-bottom-navigation app :value="activeScreen" grow shift fixed color="teal">
+    <v-bottom-navigation app :value="activeScreenHome" grow shift fixed color="teal">
       <v-btn to="/">
         <span>Home</span>
         <v-icon>{{ icons.mdiHome }}</v-icon>
+      </v-btn>
+
+      <v-btn to="/news">
+        <span>Notícias</span>
+        <v-icon>{{ icons.mdiNewspaper }}</v-icon>
       </v-btn>
 
       <v-btn to="/test-covid-19">
@@ -28,20 +33,22 @@
 </template>
 
 <script>
-import { mdiHome, mdiBook, mdiFace } from "@mdi/js";
+import { mdiHome, mdiBook, mdiFace, mdiNewspaper } from "@mdi/js";
+import { mapState } from "vuex";
 
 export default {
   name: "Home",
   data: () => ({
-    activeScreen: 0,
     drawer: false,
     group: null,
     icons: {
       mdiHome,
       mdiBook,
-      mdiFace
+      mdiFace,
+      mdiNewspaper
     }
   }),
+  computed: mapState(["activeScreenHome"]),
   watch: {
     group() {
       this.drawer = false;

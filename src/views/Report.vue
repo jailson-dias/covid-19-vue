@@ -20,13 +20,12 @@
         ></v-select>
         <div class="d-flex flex-column align-center">
           <v-btn
-            :loading="loading3"
-            :disabled="loading3"
+            :loading="creating"
+            :disabled="creating"
             class="ma-2 white--text"
             color="#4267b2"
             width="220"
             height="40"
-            @click="loader = 'loading3'"
           >Cadastrar caso</v-btn>
         </div>
       </div>
@@ -44,7 +43,8 @@ export default {
     age: "",
     gender: "",
     coronaVirusState: "",
-    proximityToInfectedPeople: ""
+    proximityToInfectedPeople: "",
+    creating: false
   }),
   computed: {
     proximityToInfectedPeopleOptions: () => [

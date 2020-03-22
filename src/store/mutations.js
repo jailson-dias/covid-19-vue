@@ -8,5 +8,9 @@ export default {
     state.user.name = name;
     state.user.photo = photo;
     state.user.email = email;
+  },
+
+  [types.SET_ACTIVE_SCREEN_HOME]: (state, { screen }) => {
+    state.activeScreenHome = screen;
   }
 };

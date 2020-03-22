@@ -64,6 +64,7 @@ firebase.auth().onAuthStateChanged(async user => {
       router,
       store,
       vuetify,
+      template: "",
       render: h => h(App)
     }).$mount("#app");
   }

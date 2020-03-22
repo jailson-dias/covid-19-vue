@@ -32,7 +32,7 @@
         </v-simple-table>
         <!-- <v-card-text style="height: 100px; position: relative"> -->
         <v-fab-transition class="mb-12" fixed>
-          <v-btn color="pink" class="mb-12" dark absolute bottom right fab>
+          <v-btn color="pink" class="mb-12" dark absolute bottom right fab to="/report">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </v-fab-transition>
