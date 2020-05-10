@@ -40,6 +40,7 @@ Vue.use(VueAxios, axios);
 firebase.initializeApp(store.state.firebaseConfig);
 
 Vue.config.productionTip = false;
+Vue.config.ignoredElements = ["iframe"];
 
 let app = null;
 

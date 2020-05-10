@@ -2,6 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import store from "../store";
+import CheckStatus from "../views/CheckStatus";
+import News from "../views/News";
+import TestCovid19 from "../views/TestCovid19";
+import Profile from "../views/Profile";
 
 Vue.use(VueRouter);
 
@@ -13,8 +17,9 @@ const routes = [
       {
         path: "/",
         name: "CheckStatus",
-        component: () =>
-          import(/* webpackChunkName: "about" */ "../views/CheckStatus.vue"),
+        component: CheckStatus,
+        // component: () =>
+        //   import(/* webpackChunkName: "about" */ "../views/CheckStatus.vue"),
         meta: {
           title: "Coronavírus na sua região"
         }
@@ -32,8 +37,9 @@ const routes = [
       {
         path: "/news",
         name: "Notícias sobre o coronavírus",
-        component: () =>
-          import(/* webpackChunkName: "about" */ "../views/News.vue"),
+        component: News,
+        // component: () =>
+        //   import(/* webpackChunkName: "about" */ "../views/News.vue"),
         meta: {
           title: "Notícias sobre o coronavírus"
         }
@@ -41,8 +47,9 @@ const routes = [
       {
         path: "/test-covid-19",
         name: "Test Covid 19",
-        component: () =>
-          import(/* webpackChunkName: "about" */ "../views/TestCovid19.vue"),
+        component: TestCovid19,
+        // component: () =>
+        //   import(/* webpackChunkName: "about" */ "../views/TestCovid19.vue"),
         meta: {
           title: "Teste online de coronavírus"
         }
@@ -50,8 +57,9 @@ const routes = [
       {
         path: "/profile",
         name: "Perfil",
-        component: () =>
-          import(/* webpackChunkName: "about" */ "../views/Profile.vue"),
+        component: Profile,
+        // component: () =>
+        //   import(/* webpackChunkName: "about" */ "../views/Profile.vue"),
         meta: {
           requiresAuth: true,
           title: "Perfil"

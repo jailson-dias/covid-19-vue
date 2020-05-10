@@ -8,13 +8,13 @@
         <v-select :items="genderOptions" label="Sexo" outlined v-model="gender"></v-select>
         <v-select
           :items="coronaVirusStateOptions"
-          label="Nível do caso de corona vírus"
+          label="Nível do caso de coronavírus"
           outlined
           v-model="coronaVirusState"
         ></v-select>
         <v-select
           :items="proximityToInfectedPeopleOptions"
-          label="Relação com a pessoa que tem corona vírus"
+          label="Relação com a pessoa que tem coronavírus"
           outlined
           v-model="proximityToInfectedPeople"
         ></v-select>
